@@ -38,6 +38,13 @@ const loginUser = async (req, res) => {
     }
 }
 
+//Get user id
+const getUserId = async (req, res) => {
+    uid = req.params.uid;
+
+    const user = await UserModel.findOne({ uid: uid })
+    res.status(200).json(user._id)
+}
 
 //Fetches user by id
 const fetchUserById = async (req, res) => {
@@ -115,6 +122,7 @@ const addBio = async (req, res) => {
 
 module.exports = {
     loginUser,
+    getUserId,
     fetchUserById,
     fetchUserProfile,
     fetchUsers,

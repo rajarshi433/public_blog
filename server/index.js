@@ -14,11 +14,7 @@ const followingController = require('./controllers/following.controller.js');
 
 const app = express();
 
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 
 app.use(express.json());
@@ -29,6 +25,9 @@ const uploadMiddleware = multer();
 
 // @route - Login User
 app.post('/login', userController.loginUser)
+
+//@route - Get user id
+app.get('/getid/:uid', userController.getUserId)
 
 //@route - Fetch User by Id
 app.get('/fetchuser/:id', userController.fetchUserById)
