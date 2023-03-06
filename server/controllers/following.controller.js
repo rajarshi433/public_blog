@@ -16,7 +16,7 @@ const addFollowing = async (req, res) => {
             res.status(200).json({ followed: followed, followedBy: followedBy })
         }
         else {
-            res.status(100).json("Already following the user")
+            res.json("Already following the user")
         }
     }
     catch (error) {

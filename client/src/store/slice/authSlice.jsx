@@ -56,6 +56,7 @@ export function signInWithGoogle() {
                     displayName: result.user.displayName,
                     photoURL: result.user.photoURL
                 })
+
             const id = await axios.get(`http://localhost:8000/getid/${result.user.uid}`)
             dispatch(addId(id))
         }

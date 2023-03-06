@@ -6,6 +6,7 @@ import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
 
 import axios from 'axios';
 import moment from 'moment';
+import SkeletonLoader from '../Loaders/SkeletonLoader';
 
 
 const FilteredPost = ({ data }) => {
@@ -54,6 +55,10 @@ const FilteredPost = ({ data }) => {
         if (isBookmarked) {
             axios.patch(`http://localhost:8000/removebookmark/${userId}/${postId}`)
         }
+    }
+
+    if (!data) {
+        return <SkeletonLoader />
     }
 
 

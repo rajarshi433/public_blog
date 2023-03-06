@@ -25,7 +25,6 @@ const Home = () => {
     const [totalPosts, setTotalPosts] = useState(0)
     const [active, setActive] = useState('suggested');
 
-    console.log('id - ', id)
     useEffect(() => {
         const fetchPosts = async () => {
             const random = await axios.get('http://localhost:8000/fetchrandomposts');

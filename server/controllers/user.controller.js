@@ -1,15 +1,10 @@
 const UserModel = require('../models/User.js');
-// const app = require('../index.js')
-// const cors = require('cors');
-// app.use(cors());
-
 
 
 //Logs in new user
 const loginUser = async (req, res) => {
     try {
         const { uid, displayName, photoURL } = req.body;
-        const isUser = await UserModel.findOne({ uid: uid })
 
         const userData = {
             uid: uid,
@@ -22,14 +17,15 @@ const loginUser = async (req, res) => {
             joinedOn: new Date().toLocaleString(),
         }
 
-        if (!isUser) {
+        const isUser = await UserModel.findOne({ uid: uid })
+        // res.json(isUser)
+        if (isUser === null) {
             const user = new UserModel(userData);
             const result = await user.save();
-            console.log(result)
             res.status(200).json(result);
         }
         else {
-            res.status(100).json("User already exists");
+            res.json("User already exists");
         }
     }
     catch (error) {

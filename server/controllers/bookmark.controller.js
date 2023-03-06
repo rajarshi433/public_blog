@@ -15,7 +15,7 @@ const addBookmark = async (req, res) => {
             res.status(200).json(result)
         }
         else {
-            res.status(100).json("Already bookmarked")
+            res.json("Already bookmarked")
         }
     }
     catch (error) {
