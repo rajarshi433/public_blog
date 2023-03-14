@@ -61,7 +61,7 @@ const Follower = ({ data }) => {
                     <Link to={`/profile/${data._id}`}>
                         <div className='flex flex-col ml-2'>
                             <p className='text-base font-semibold'>{data.displayName}</p>
-                            <p className='line-clamp-2 text-sm '>Lorem ipsum dolor, sit am et consectetur adipisicing elit. Omnis earum tempora nemo saepe accusamus libero illum doloribus ullam eaque magnam.</p>
+                            <p className='line-clamp-2 text-sm '>{data.about}</p>
                         </div>
                     </Link>
                 </div>
