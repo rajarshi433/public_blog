@@ -125,7 +125,7 @@ const deletePost = async (req, res) => {
 const searchPost = async (req, res) => {
     try {
         const query = req.params.query;
-        const result = await PostModel.find({ title: { $regex: query } }).populate('createdBy')
+        const result = await PostModel.find({ title: { $regex: new RegExp(query, 'i') } }).populate('createdBy')
         res.status(200).json(result)
     }
     catch (error) {
