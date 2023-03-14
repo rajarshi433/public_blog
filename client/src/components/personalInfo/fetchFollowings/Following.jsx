@@ -52,7 +52,7 @@ const Following = ({ data }) => {
     return (
         <>
             <div className='flex items-center mb-3 '>
-                <div className='flex'>
+                <div className='flex mr-3'>
                     <img
                         className="w-12 h-12 rounded-full"
                         src={data.photoURL}
