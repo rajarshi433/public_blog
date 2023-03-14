@@ -53,7 +53,7 @@ const Profile = ({ data }) => {
     return (
         <div className='flex items-center mb-3'>
             <Link to={`/profile/${data._id}`}>
-                <div className='flex'>
+                <div className='flex mr-3'>
                     <img
                         className="w-8 h-8 rounded-full"
                         src={data.photoURL}
@@ -62,7 +62,7 @@ const Profile = ({ data }) => {
 
                     <div className='flex flex-col ml-2'>
                         <p className='text-base font-semibold line-clamp-2'>{data.displayName}</p>
-                        <p className='line-clamp-2 text-sm '>Lorem ipsum dolor, sit am et consectetur adipisicing elit. Omnis earum tempora nemo saepe accusamus libero illum doloribus ullam eaque magnam.</p>
+                        <p className='line-clamp-2 text-sm '>{data.about}</p>
                     </div>
                 </div>
             </Link>
