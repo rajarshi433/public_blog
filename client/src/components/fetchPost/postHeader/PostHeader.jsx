@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
@@ -17,6 +17,7 @@ const PostHeader = ({ data }) => {
     const [bookmarkData, setBookmarkData] = useState([]);
     const userId = useSelector((state) => state.auth._id);
     const postId = data._id;
+    const navigate = useNavigate();
 
     const dateString = data.createdAt;
     const format = 'D/M/YYYY, h:mm:ss a';
@@ -45,6 +46,11 @@ const PostHeader = ({ data }) => {
 
     const bookmarkHandler = async (e) => {
         e.preventDefault();
+
+        if (!userId) {
+            navigate('/login')
+            return;
+        }
         setIsBookmarked(!isBookmarked);
 
         if (!isBookmarked) {

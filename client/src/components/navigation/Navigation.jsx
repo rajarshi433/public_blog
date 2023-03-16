@@ -78,7 +78,7 @@ const Navigation = () => {
     return (
         <>
             {/* Leftbar */}
-            <aside ref={leftbarRef} className={`fixed top-0 left-0 z-30 lg:z-0 w-52 lg:w-16 h-screen pt-20 transition-transform ${showLeftbar ? "" : "-translate-x-full"} bg-main border-r lg:translate-x-0`}>
+            <aside ref={leftbarRef} className={`${uid ? '' : 'hidden'} fixed top-0 left-0 z-30 lg:z-0 w-52 lg:w-16 h-screen pt-20 transition-transform ${showLeftbar ? "" : "-translate-x-full"} bg-main border-r lg:translate-x-0`}>
                 <div className="h-full px-3 pb-4 overflow-y-auto mt-14">
 
                     <IoCaretBackCircleOutline className="lg:hidden absolute top-4 right-2 text-white text-4xl cursor-pointer" onClick={() => setShowLeftbar(!showLeftbar)}></IoCaretBackCircleOutline>
@@ -117,10 +117,10 @@ const Navigation = () => {
                                 onClick={() => setShowLeftbar(!showLeftbar)}
                                 className="inline-flex items-center p-2 text-sm text-black rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                                 <span className="text-2xl">
-                                    <HiMenuAlt2 />
+                                    <HiMenuAlt2 className={uid ? '' : 'hidden'} />
                                 </span>
                             </button>
-                            <Link to="/" className="flex ml-2 md:mr-24">
+                            <Link to="/" className={`flex ${uid ? 'ml-2' : '-ml-2 md:ml-2'} md:mr-24`}>
                                 <img
                                     src={logo}
                                     className="h-11 -mt-1 mr-3"
@@ -135,12 +135,19 @@ const Navigation = () => {
                         <div className={`flex items-center mr-4 ${showModal ? "z-30" : ''}`} ref={modalRef}>
                             <div className="flex items-center">
                                 <div>
-                                    <img
-                                        className="w-10 h-10 rounded-full cursor-pointer"
-                                        src={userInfo.photoURL}
-                                        alt="user photo"
-                                        onClick={() => setShowModal(!showModal)}
-                                    />
+                                    {
+                                        uid ? <img
+                                            className="w-10 h-10 rounded-full cursor-pointer"
+                                            src={userInfo.photoURL}
+                                            alt="user photo"
+                                            onClick={() => setShowModal(!showModal)}
+                                        />
+                                            :
+                                            <Link to="/login">
+                                                <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Log In</button>
+                                            </Link>
+                                    }
+
                                 </div>
                                 <div
                                     className={`${showModal ? "" : 'hidden'} my-4 text-base list-none bg-gray-300 text-black divide-y divide-gray-900 rounded shadow fixed top-12 right-8`}>

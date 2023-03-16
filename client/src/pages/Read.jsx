@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
 
 import Post from '../components/fetchPost/Post';
 import Rightbar from '../components/rightbar/Rightbar';
@@ -14,6 +15,8 @@ const Read = () => {
 
     const [postInfo, setPostInfo] = useState(null)
     const { id } = useParams();
+    // const uid = useSelector((state) => state.auth.uid);
+
 
     useEffect(() => {
         const fetchPostData = async () => {

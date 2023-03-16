@@ -29,7 +29,8 @@ function App() {
         <Route element={<NavigationBars />}>
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/bookmarks" element={<ProtectedRoute><Bookmarks /></ProtectedRoute>} />
-          <Route path="/read/:id" element={<ProtectedRoute><Read /></ProtectedRoute>} />
+          <Route path="/read/:id" element={<Read />} />
+          {/* <Route path="/read/:id" element={<ProtectedRoute><Read /></ProtectedRoute>} /> */}
           <Route path="/profile/:id" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/myprofile/:uid" element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
           <Route path="/myposts" element={<ProtectedRoute><MyPosts /></ProtectedRoute>} />

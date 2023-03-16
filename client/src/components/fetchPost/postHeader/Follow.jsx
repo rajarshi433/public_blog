@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -10,6 +11,7 @@ const Follow = ({ data }) => {
     const [followerData, setFollowerData] = useState([])
     const ferId = useSelector((state) => state.auth._id);
     const fingId = data.createdBy._id;
+    const navigate = useNavigate();
 
 
     const memoizedFollowerData = useMemo(() => {
@@ -38,6 +40,11 @@ const Follow = ({ data }) => {
 
     const followHandler = async (e) => {
         e.preventDefault();
+
+        if (!ferId) {
+            navigate('/login')
+            return;
+        }
         setIsFollowed(!isFollowed)
 
         if (!isFollowed) {
