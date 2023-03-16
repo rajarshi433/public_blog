@@ -14,7 +14,9 @@ const followingController = require('./controllers/following.controller.js');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:8000', 'blogmate.onrender.com']
+}));
 
 
 app.use(express.json());
