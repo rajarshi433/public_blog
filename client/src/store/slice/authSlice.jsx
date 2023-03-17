@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { GoogleAuthProvider, signOut, signInWithPopup } from "firebase/auth";
 import { auth } from "../../config/firebaseConfig";
 
-import axios from "axios";
+// import axios from "axios";
 
 
 const authSlice = createSlice({
@@ -50,14 +50,14 @@ export function signInWithGoogle() {
             const googleAuthProvider = new GoogleAuthProvider();
             const result = await signInWithPopup(auth, googleAuthProvider);
             dispatch(addUser(result.user));
-            await axios.post('http://localhost:8000/login',
+            await axios.post('https://blogmate-api.onrender.com/login',
                 {
                     uid: result.user.uid,
                     displayName: result.user.displayName,
                     photoURL: result.user.photoURL
                 })
 
-            const id = await axios.get(`http://localhost:8000/getid/${result.user.uid}`)
+            const id = await axios.get(`https://blogmate-api.onrender.com/getid/${result.user.uid}`)
             dispatch(addId(id))
         }
         catch (error) {

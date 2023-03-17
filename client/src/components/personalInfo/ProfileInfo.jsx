@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SkeletonLoader from '../Loaders/SkeletonLoader';
+import SkeletonLoader from '../loaders/SkeletonLoader';
 
 
 const ProfileInfo = ({ setActive, data }) => {

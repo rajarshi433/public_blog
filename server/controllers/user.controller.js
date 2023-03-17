@@ -1,5 +1,7 @@
 const UserModel = require('../models/User.js');
 
+const moment = require('moment');
+
 
 //Logs in new user
 const loginUser = async (req, res) => {
@@ -14,7 +16,7 @@ const loginUser = async (req, res) => {
             following: [],
             followers: [],
             bookmarks: [],
-            joinedOn: new Date().toLocaleString(),
+            joinedOn:  moment().format('D/M/YYYY, h:mm:ss a')
         }
 
         const isUser = await UserModel.findOne({ uid: uid })

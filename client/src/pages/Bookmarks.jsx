@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Rightbar from '../components/rightbar/Rightbar';
 import BookmarkedPosts from '../components/filteredPosts/BookmarkedPosts';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const Bookmarks = () => {
@@ -15,7 +15,7 @@ const Bookmarks = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchuser/${userId}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchuser/${userId}`)
             setBookmarks(result.data.bookmarks)
         }
         fetchUser();

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
 
-import SkeletonLoader from '../Loaders/SkeletonLoader';
+import SkeletonLoader from '../loaders/SkeletonLoader';
 
 import moment from 'moment';
 
@@ -12,11 +13,48 @@ const ProfilePosts = ({ data }) => {
 
     const { id } = useParams();
 
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [bookmarkData, setBookmarkData] = useState([]);
+    const userId = useSelector((state) => state.auth._id);
+    const postId = data._id;
+
     const dateString = data.createdAt;
     const format = 'D/M/YYYY, h:mm:ss a';
     const now = moment();
     const date = moment(dateString, format);
     const relativeTime = date.from(now);
+
+    const memoizedBookmarkData = useMemo(() => {
+        return bookmarkData;
+    }, [bookmarkData]);
+
+    useEffect(() => {
+        const fetchBookmarks = async () => {
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchbookmarks/${userId}`);
+            setBookmarkData(result.data);
+        };
+        fetchBookmarks();
+    }, []);
+
+    useEffect(() => {
+        if (memoizedBookmarkData.includes(postId)) {
+            setIsBookmarked(true);
+        } else {
+            setIsBookmarked(false);
+        }
+    }, [memoizedBookmarkData]);
+
+    const bookmarkHandler = async (e) => {
+        e.preventDefault();
+        setIsBookmarked(!isBookmarked);
+
+        if (!isBookmarked) {
+            await axios.patch(`https://blogmate-api.onrender.com/addbookmark/${userId}/${postId}`)
+        }
+        if (isBookmarked) {
+            axios.patch(`https://blogmate-api.onrender.com/removebookmark/${userId}/${postId}`)
+        }
+    }
 
     if (!data) {
         return <SkeletonLoader />
@@ -25,7 +63,7 @@ const ProfilePosts = ({ data }) => {
 
     return (
         <>
-            <div className=" h-fit -mb-2 md:mb-2 col-span-2 lg:col-span-2 lg:row-span-1 mt-6 md:mt-0 bg-blue-50 rounded-md">
+            <div className=" h-fit -mb-2 md:mb-2 col-span-2 lg:col-span-2 lg:row-span-1 mt-6 md:mt-0 rounded-md">
                 <div className="w-full flex items-stretch h-fit rounded md:col-span-1 lg:col-span-1 lg:row-span-1 col-span-2">
                     <div className="text-2xl grid grid-cols-10 gap-4 md:gap-6 max-w-fit rounded-md col-span-10">
                         <div className='md:col-span-3 col-span-4 h-full'>
@@ -60,7 +98,7 @@ const ProfilePosts = ({ data }) => {
 
                             <span className='flex justify-between my-3 '>
                                 <p className='text-sm text-gray-600 font-Play font-bold'>{relativeTime}</p>
-                                <BsBookmark className='text-xl mr-1 cursor-pointer'></BsBookmark>
+                                {isBookmarked ? <BsBookmarkCheckFill className={data.createdBy._id === userId ? 'hidden' : 'text-xl mr-1 cursor-pointer'} onClick={bookmarkHandler}></BsBookmarkCheckFill> : <BsBookmark className={data.createdBy._id === userId ? 'hidden' : 'text-xl mr-1 cursor-pointer'} onClick={bookmarkHandler}></BsBookmark>}
                             </span>
                         </div>
                     </div>

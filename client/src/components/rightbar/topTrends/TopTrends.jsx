@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { BsLightningCharge } from "react-icons/bs";
 
 import Trends from './Trends';
-import RightbarLoader from '../../Loaders/RightbarLoader';
+import RightbarLoader from '../../loaders/RightbarLoader';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const TopTrends = () => {
@@ -14,7 +14,7 @@ const TopTrends = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const random = await axios.get('http://localhost:8000/fetchrandomposts');
+            const random = await axios.get('https://blogmate-api.onrender.com/fetchrandomposts');
             setTopics(random.data)
         }
         fetchPosts();

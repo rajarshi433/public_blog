@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 8000;
 require('./configurations/db.config.js');
 
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -15,10 +16,8 @@ const followingController = require('./controllers/following.controller.js');
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:8000', 'blogmate.onrender.com']
+    origin: ['http://localhost:5173', 'http://localhost:8000', 'https://blogmate.onrender.com']
 }));
-
-
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

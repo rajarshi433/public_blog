@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 
 import { RiCompass3Line } from "react-icons/ri";
 
-import RightbarLoader from '../../Loaders/RightbarLoader';
+import RightbarLoader from '../../loaders/RightbarLoader';
 import Profile from './Profile';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const ToFollow = () => {
@@ -16,7 +16,7 @@ const ToFollow = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const result = await axios.get('http://localhost:8000/fetchusers');
+            const result = await axios.get('https://blogmate-api.onrender.com/fetchusers');
             setUsers(result.data)
         }
         fetchUsers();

@@ -2,10 +2,11 @@ import React, { useRef, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import SkeletonLoader from '../components/Loaders/SkeletonLoader';
+import SkeletonLoader from '../components/loaders/SkeletonLoader';
 
 import JoditEditor from 'jodit-react';
-import axios from "axios";
+// import axios from "axios";
+import moment from 'moment';
 
 
 const CreatePost = () => {
@@ -27,9 +28,10 @@ const CreatePost = () => {
         data.set('content', content);
         data.set('banner', banner[0]);
         data.set('createdBy', uid);
+        data.set('createdAt', moment().format('D/M/YYYY, h:mm:ss a'))
 
-        const result = await axios.post('http://localhost:8000/addpost', data);
-        if (result.statusText === 'OK') {
+        const result = await axios.post('https://blogmate-api.onrender.com/addpost', data);
+        if (result.status === 200) {
             setWait(false);
             setRedirect(true);
         }

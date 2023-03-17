@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-import SkeletonLoader from '../Loaders/SkeletonLoader';
+import SkeletonLoader from '../loaders/SkeletonLoader';
 
-import axios from 'axios';
+// import axios from 'axios';
 import moment from 'moment';
 
 
@@ -23,7 +23,7 @@ const CreatedPosts = ({ data }) => {
         e.preventDefault();
 
         if (confirm('Are you sure you want to delete the post?\nThis Post will be permenantly deleted')) {
-            const result = await axios.delete(`http://localhost:8000/deletepost/${data._id}`)
+            const result = await axios.delete(`https://blogmate-api.onrender.com/deletepost/${data._id}`)
             setIsDeleted(true)
         }
         else {

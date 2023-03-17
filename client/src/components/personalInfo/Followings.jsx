@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Following from './fetchFollowings/Following';
-import SkeletonLoader from '../Loaders/SkeletonLoader';
+import SkeletonLoader from '../loaders/SkeletonLoader';
 
 
 const Followings = ({ data }) => {

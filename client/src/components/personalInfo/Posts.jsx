@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ProfilePosts from '../filteredPosts/ProfilePosts';
-import SkeletonLoader from '../Loaders/SkeletonLoader';
+import SkeletonLoader from '../loaders/SkeletonLoader';
 
 
 const Posts = ({ data }) => {

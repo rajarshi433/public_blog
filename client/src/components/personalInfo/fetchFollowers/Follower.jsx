@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const Follower = ({ data }) => {
@@ -21,7 +21,7 @@ const Follower = ({ data }) => {
             if (!ferId) {
                 return;
             }
-            const result = await axios.get(`http://localhost:8000/fetchfollowing/${ferId}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchfollowing/${ferId}`)
             setFollowerData(result.data);
         }
         fetchFollowings();
@@ -41,10 +41,10 @@ const Follower = ({ data }) => {
         setIsFollowed(!isFollowed)
 
         if (!isFollowed) {
-            await axios.patch(`http://localhost:8000/addfollowing/${ferId}/${fingId}`)
+            await axios.patch(`https://blogmate-api.onrender.com/addfollowing/${ferId}/${fingId}`)
         }
         if (isFollowed) {
-            await axios.patch(`http://localhost:8000/removefollowing/${ferId}/${fingId}`)
+            await axios.patch(`https://blogmate-api.onrender.com/removefollowing/${ferId}/${fingId}`)
         }
     }
 

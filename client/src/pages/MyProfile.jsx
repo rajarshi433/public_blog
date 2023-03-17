@@ -7,12 +7,12 @@ import Followings from '../components/personalInfo/Followings';
 import Followers from '../components/personalInfo/Followers';
 import ProfileInfo from '../components/personalInfo/ProfileInfo';
 import ProfilePosts from '../components/filteredPosts/ProfilePosts';
-import Spinner from '../components/Loaders/Spinner';
-import EndPost from '../components/Loaders/EndPost';
-import SkeletonLoader from '../components/Loaders/SkeletonLoader';
+import Spinner from '../components/loaders/Spinner';
+import EndPost from '../components/loaders/EndPost';
+import SkeletonLoader from '../components/loaders/SkeletonLoader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const MyProfile = () => {
@@ -26,13 +26,13 @@ const MyProfile = () => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchmyprofile/${id}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchmyprofile/${id}`)
             setUserInfo(result.data)
         }
         fetchUserData();
 
         const fetchPosts = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchuserposts/${id}/${3}/${skip}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchuserposts/${id}/${3}/${skip}`)
             setUserPosts([...userPosts, ...result.data.posts])
             setTotalPosts(result.data.totalPosts)
         }

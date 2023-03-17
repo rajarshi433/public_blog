@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { BsBookmark } from "react-icons/bs";
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Spinner from '../Loaders/Spinner';
-import EndPost from '../Loaders/EndPost';
-import SkeletonLoader from '../Loaders/SkeletonLoader'
+import Spinner from '../loaders/Spinner';
+import EndPost from '../loaders/EndPost';
+import SkeletonLoader from '../loaders/SkeletonLoader'
 
-import axios from 'axios';
+// import axios from 'axios';
 import moment from 'moment';
 
 
@@ -21,7 +21,7 @@ const AssociatedPosts = ({ data }) => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchuserposts/${data.createdBy._id}/${3}/${skip}`);
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchuserposts/${data.createdBy._id}/${3}/${skip}`);
             setAssociatedPosts([...result.data.posts, ...associatedPosts])
             setTotalPosts(result.data.totalPosts)
         }

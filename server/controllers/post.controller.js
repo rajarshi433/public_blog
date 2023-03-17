@@ -2,12 +2,13 @@ const UserModel = require('../models/User.js');
 const PostModel = require('../models/Post.js');
 
 const imagekit = require('../configurations/imagekit.config.js');
+const moment = require('moment');
 
 
 //Creates a new post
 const addPost = async (req, res) => {
     const file = req.file.buffer;
-    const { title, content, createdBy } = req.body;
+    const { title, content, createdBy, createdAt } = req.body;
     const user = await UserModel.findOne({ uid: createdBy });
 
     try {
@@ -34,7 +35,7 @@ const addPost = async (req, res) => {
             content: content,
             banner: imageUrl,
             createdBy: user._id,
-            createdAt: new Date().toLocaleString(),
+            createdAt: createdAt
         }
 
         const post = new PostModel(postData);

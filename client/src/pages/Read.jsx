@@ -6,9 +6,9 @@ import Post from '../components/fetchPost/Post';
 import Rightbar from '../components/rightbar/Rightbar';
 import PostOwner from '../components/fetchPost/PostOwner';
 import AssociatedPosts from '../components/filteredPosts/AssociatedPosts';
-import SkeletonLoader from '../components/Loaders/SkeletonLoader';
+import SkeletonLoader from '../components/loaders/SkeletonLoader';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const Read = () => {
@@ -20,7 +20,7 @@ const Read = () => {
 
     useEffect(() => {
         const fetchPostData = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchpost/${id}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchpost/${id}`)
             setPostInfo(result.data)
         }
         fetchPostData();

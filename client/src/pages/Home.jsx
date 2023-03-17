@@ -5,14 +5,14 @@ import Header from '../components/trendings/Header';
 import Post from '../components/trendings/Post';
 import Rightbar from '../components/rightbar/Rightbar';
 import FilteredPost from '../components/filteredPosts/FilteredPost';
-import Spinner from '../components/Loaders/Spinner';
-import EndPost from '../components/Loaders/EndPost';
-import SkeletonLoader from '../components/Loaders/SkeletonLoader';
+import Spinner from '../components/loaders/Spinner';
+import EndPost from '../components/loaders/EndPost';
+import SkeletonLoader from '../components/loaders/SkeletonLoader';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import moment from 'moment';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const Home = () => {
@@ -27,8 +27,8 @@ const Home = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const random = await axios.get('http://localhost:8000/fetchrandomposts');
-            const suggestions = await axios.get(`http://localhost:8000/fetchfilteredposts/${skip}`);
+            const random = await axios.get('https://blogmate-api.onrender.com/fetchrandomposts');
+            const suggestions = await axios.get(`https://blogmate-api.onrender.com/fetchfilteredposts/${skip}`);
             setfilteredPosts([...filteredPosts, ...suggestions.data.suggestedPosts])
             setReversedFilteredPosts([...suggestions.data.suggestedPosts, ...filteredPosts])
             setTotalPosts(suggestions.data.totalPosts)

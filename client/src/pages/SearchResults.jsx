@@ -5,7 +5,7 @@ import Rightbar from '../components/rightbar/Rightbar';
 import Header from '../components/trendings/Header';
 import FilteredPost from '../components/filteredPosts/FilteredPost';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const SearchResults = () => {
@@ -15,7 +15,7 @@ const SearchResults = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const results = await axios.get(`http://localhost:8000/search/${query}`);
+            const results = await axios.get(`https://blogmate-api.onrender.com/search/${query}`);
             setPosts(results.data)
         }
         fetchPosts();

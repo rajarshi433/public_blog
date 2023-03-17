@@ -7,9 +7,9 @@ import Followings from '../components/personalInfo/Followings';
 import Followers from '../components/personalInfo/Followers';
 import ProfileInfo from '../components/personalInfo/ProfileInfo';
 import ProfilePosts from '../components/filteredPosts/ProfilePosts';
-import SkeletonLoader from '../components/Loaders/SkeletonLoader';
+import SkeletonLoader from '../components/loaders/SkeletonLoader';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const Profile = () => {
@@ -22,13 +22,13 @@ const Profile = () => {
     useEffect(() => {
         setActive('about');
         const fetchUserData = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchuser/${id}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchuser/${id}`)
             setUserInfo(result.data)
         }
         fetchUserData();
 
         const fetchPosts = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchuserposts/${id}/${0}/${0}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchuserposts/${id}/${0}/${0}`)
             setUserPosts(result.data.posts)
         }
         fetchPosts();

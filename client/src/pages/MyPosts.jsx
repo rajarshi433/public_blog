@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 
 import Rightbar from '../components/rightbar/Rightbar';
 import CreatedPosts from '../components/filteredPosts/CreatedPosts';
-import Spinner from '../components/Loaders/Spinner';
+import Spinner from '../components/loaders/Spinner';
+
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const MyPosts = () => {
@@ -18,7 +19,7 @@ const MyPosts = () => {
 
     useEffect(() => {
         const fetchMyPosts = async () => {
-            const result = await axios.get(`http://localhost:8000/fetchuserposts/${id}/${3}/${skip}`)
+            const result = await axios.get(`https://blogmate-api.onrender.com/fetchuserposts/${id}/${3}/${skip}`)
             setPosts([...posts, ...result.data.posts])
             setTotalPosts(result.data.totalPosts)
         }
@@ -29,6 +30,8 @@ const MyPosts = () => {
         setSkip(skip + 3)
     }
 
+    console.log('id', id)
+    console.log('posts', posts)
 
     return (
         <>
